@@ -119,7 +119,7 @@ def find_first_file(base_path):
             return os.path.join(root, files[0])
     return None
 
-def display_code_editor(code, file_name, button, command, button_message):
+def display_code_editor(code, file_name, button, command, button_message, ace_props=None):
     # --- Editor Config ---
     editor_btns = [{
         "name": f"{button}",
@@ -173,7 +173,6 @@ def display_code_editor(code, file_name, button, command, button_message):
         }]
     }
     info_bar["style"] = {**info_bar["style"], "order": "1", "height": "2.0rem", "padding": "0rem 0.6rem", "padding-bottom": "0.2rem"}
-    ace_props = {"style": {"borderRadius": "0px 0px 8px 8px"}}
     response_dict = code_editor(code,  height = [15, 17], theme="default", lang="java", shortcuts="vscode", buttons=editor_btns, info=info_bar, options={"wrap": False, "showLineNumbers": True}, props=ace_props)
 
     # --- Handle Save ---
@@ -222,7 +221,8 @@ with tab1:
 
         code = st.session_state.file_code[selected_file]
 
-        display_code_editor(code, os.path.basename(selected_file), "Save", "submit", "Saved!")
+        ace_props = {"enableSnippets": True, "style": {"borderRadius": "0px 0px 8px 8px"}}
+        display_code_editor(code, os.path.basename(selected_file), "Save", "submit", "Saved!", ace_props)
 
 with tab2:
     # Step 3: Add New File
@@ -293,7 +293,8 @@ with tab3:
 
             code2 = st.session_state.file_code[selected_file]
 
-            display_code_editor(code2, os.path.basename(selected_file), "Copy", "copyAll", "Copied to clipboard!")
+            ace_props = {"readOnly": True, "style": {"borderRadius": "0px 0px 8px 8px"}}
+            display_code_editor(code2, os.path.basename(selected_file), "Copy", "copyAll", "Copied to clipboard!", ace_props)
 
     jar_file_path_ws3d = build_ws3d(st.session_state.ws3d_dir)
     download_ws3d(jar_file_path_ws3d)
