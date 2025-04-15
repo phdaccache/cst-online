@@ -221,7 +221,7 @@ with tab1:
 
         code = st.session_state.file_code[selected_file]
 
-        ace_props = {"enableSnippets": True, "style": {"borderRadius": "0px 0px 8px 8px"}}
+        ace_props = {"style": {"borderRadius": "0px 0px 8px 8px"}}
         display_code_editor(code, os.path.basename(selected_file), "Save", "submit", "Saved!", ace_props)
 
 with tab2:
@@ -293,7 +293,7 @@ with tab3:
 
             code2 = st.session_state.file_code[selected_file]
 
-            ace_props = {"readOnly": True, "style": {"borderRadius": "0px 0px 8px 8px"}}
+            ace_props = {"style": {"borderRadius": "0px 0px 8px 8px"}}
             display_code_editor(code2, os.path.basename(selected_file), "Copy", "copyAll", "Copied to clipboard!", ace_props)
 
     jar_file_path_ws3d = build_ws3d(st.session_state.ws3d_dir)
