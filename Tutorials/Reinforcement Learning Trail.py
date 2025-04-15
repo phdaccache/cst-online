@@ -25,6 +25,7 @@ def interactive_code_with_tooltips(code: str, tooltips: dict):
             if key in selected:
                 matched = True
                 break
+        key = key if matched else "No match"
 
         @st.dialog(f"{key}:".capitalize())
         def show_tooltip(text):
